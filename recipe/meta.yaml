@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pgsanity-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pgsanity-{{ version }}.tar.gz
   sha256: de0bbd6fe4f98bf5139cb5f466eac2e2abaf5a7b050b9e4867b87bf360873173
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - pgsanity = pgsanity.pgsanity:main
@@ -20,9 +20,9 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -32,6 +32,7 @@ test:
     - pgsanity --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: http://github.com/markdrago/pgsanity
